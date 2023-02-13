@@ -45,8 +45,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
       { branchName: convertTextToBranchName(selectionText, menuItemId) },
       () => {}
     );
-    // TODO: do something with response here
-    // TODO: make prefix and replaceCharacter configurable
+    // TODO: do something with response here if the input text can't be set from the content script. 
   })();
 });
 

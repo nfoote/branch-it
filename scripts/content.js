@@ -5,13 +5,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   const { branchName } = message;
 
   if (isMatchingInputType(activeElement?.tagName.toLowerCase())) {
-		activeElement.value = branchName;
+    activeElement.value = branchName;
   } else {
-    setSelectedText(branchName);
+    sendResponse(false);
   }
 
-  // TODO: Send a response for debugging/error messages
-  sendResponse();
+  sendResponse(true);
 });
 
 const isMatchingInputType = (type) => {
@@ -22,20 +21,4 @@ const isMatchingInputType = (type) => {
     default:
       false;
   }
-};
-
-const setSelectedText = () => {
-  const selectObj = window.getSelection();
-  const a = document.createElement("a");
-
-  selectedText = selectObj.toString();
-  range = selectObj.getRangeAt(0);
-
-  a.innerHTML = selectedText;
-  a.type = "link";
-  a.href = "";
-  a.target = "_blank";
-
-  range.deleteContents();
-  range.insertNode(a);
 };
