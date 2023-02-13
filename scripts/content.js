@@ -6,11 +6,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (isMatchingInputType(activeElement?.tagName.toLowerCase())) {
     activeElement.value = branchName;
+    sendResponse(true);
   } else {
     sendResponse(false);
   }
-
-  sendResponse(true);
 });
 
 const isMatchingInputType = (type) => {
